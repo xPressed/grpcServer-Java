@@ -1,0 +1,34 @@
+syntax = "proto3";
+package grpc.xpressed;
+
+message UserGetRequest {
+  string username = 1;
+}
+
+message UserGetResponse {
+  string username = 1;
+  string password = 2;
+}
+
+message UserAddRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message UserAddResponse {
+  bool status = 1;
+}
+
+message UserDeleteRequest {
+  string username = 1;
+}
+
+message UserDeleteResponse {
+  bool status = 1;
+}
+
+service UserService {
+  rpc getUser(UserGetRequest) returns (UserGetResponse);
+  rpc addUser(UserAddRequest) returns (UserAddResponse);
+  rpc deleteUser(UserDeleteRequest) returns (UserDeleteResponse);
+}
