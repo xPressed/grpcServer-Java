@@ -47,40 +47,9 @@ public class UserServiceImpl extends UserServiceGrpc.UserServiceImplBase {
         responseObserver.onCompleted();
     }
 
-//    @Override
-//    public void updateUser(UserServiceOuterClass.UserUpdateRequest request, StreamObserver<UserServiceOuterClass.UserUpdateResponse> responseObserver) {
-//        UserServiceOuterClass.UserUpdateResponse response;
-//        User user = userRepository.findByUsername(request.getOldUsername());
-//        if (user.getPassword().equals(request.getOldPassword())) {
-//            if (userRepository.findByUsername(request.getNewUsername()) == null) {
-//                userRepository.delete(user);
-//                user.setUsername(request.getNewUsername());
-//                user.setPassword(request.getNewPassword());
-//
-//                userRepository.save(user);
-//
-//                response = UserServiceOuterClass.UserUpdateResponse.newBuilder()
-//                        .setStatus(1)
-//                        .build();
-//            } else {
-//                response = UserServiceOuterClass.UserUpdateResponse.newBuilder()
-//                        .setStatus(2)
-//                        .build();
-//            }
-//        } else {
-//            response = UserServiceOuterClass.UserUpdateResponse.newBuilder()
-//                    .setStatus(0)
-//                    .build();
-//        }
-//
-//        responseObserver.onNext(response);
-//        responseObserver.onCompleted();
-//    }
-
-
     @Override
     public void deleteUser(UserServiceOuterClass.UserDeleteRequest request, StreamObserver<UserServiceOuterClass.UserDeleteResponse> responseObserver) {
-        UserServiceOuterClass.UserDeleteResponse response = null;
+        UserServiceOuterClass.UserDeleteResponse response;
         User user = userRepository.findByUsername(request.getUsername());
 
         if (user != null) {
